@@ -1,6 +1,15 @@
 @extends('layouts.app')
+
 @section('title','Listado de Productos')
+
 @section('content')
+@if (session('status'))
+    <div class="alert alert-success">
+        {{session('status')}}
+    </div>
+@endif
+
+<a href="{{route('products.create') }}" type="button" class="btn btn-primary btn-lg">Agregar</a>
     @if($products->count())
 <table class="table table-dark table-striped">
     <thead>
@@ -22,6 +31,15 @@
             <td>{{$product->updated_at}}</td>
             <td>
                 {{--Botones de accion ver, editar y eliminar--}}
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="{{ route('products.edit',$product->id) }}" class="btn btn-primary">Editar</a>
+                <form action=" {{ route('products.destroy',$product->id) }}" method="POST">
+                    @csrf @method('DELETE')
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                </form>
+                    <a href="{{route('products.show',$product->id)}}" type="button" class="btn btn-primary">Ver</a>
+                </div>
+               
             </td>
         <tr>
     @endforeach
