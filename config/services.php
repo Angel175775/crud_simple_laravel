@@ -32,7 +32,7 @@ return [
     ],
     'google'=>[
         'client_id'=>'872618917699-9p0iq105fbjtgtk1llvssdfahs1lt6n1.apps.googleusercontent.com',
-        'client_secret'=>'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',
+        'client_secret'=>'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',
         'redirect'=>'/google/callback',
     ]
 

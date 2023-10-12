@@ -26,10 +26,18 @@ class GoogleController extends Controller
             }
             else{
                 $newUser= User::updateOrCreate([
-                    'name'->
-                    
-                ])
+                    'name'=>$user->name,
+                    'email'=>$user->email,
+                    'google_id'=>$user->id,
+                    'password'=>encrypt('UnaContraseniaCualquiera')
+                ]);
+                Auth::login($newUser);
+                return redirect()->intended('home');
             }
+        }
+        catch (Exception $e)
+        {
+            dd($e->getMessage());
         }
     }
 }
